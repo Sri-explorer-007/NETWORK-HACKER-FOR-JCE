@@ -76,7 +76,7 @@ export const TopBar: React.FC = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search entities, accounts..."
+            placeholder="Search suspects, accounts, files..."
             className="w-full bg-slate-50 dark:bg-slate-950/90 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-200 text-xs rounded-lg pl-8 pr-3 py-1.5 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500 font-sans shadow-sm"
           />
         </div>
@@ -95,7 +95,7 @@ export const TopBar: React.FC = () => {
             }`}
           >
             <Network className="w-3 h-3" />
-            <span>Network</span>
+            <span>Graph</span>
           </button>
           <button
             onClick={() => setActiveView('assistant')}
@@ -106,7 +106,7 @@ export const TopBar: React.FC = () => {
             }`}
           >
             <Sparkles className="w-3 h-3 text-cyan-600 dark:text-cyan-400" />
-            <span>AI Assistant</span>
+            <span>Ask AI</span>
           </button>
           <button
             onClick={() => setActiveView('replay')}
@@ -117,7 +117,7 @@ export const TopBar: React.FC = () => {
             }`}
           >
             <History className="w-3 h-3" />
-            <span>Replay</span>
+            <span>Timeline</span>
           </button>
           <button
             onClick={() => setActiveView('evidence')}
@@ -139,7 +139,7 @@ export const TopBar: React.FC = () => {
             }`}
           >
             <Sparkles className="w-3 h-3" />
-            <span>Patterns</span>
+            <span>Links</span>
           </button>
         </div>
 
@@ -177,13 +177,13 @@ export const TopBar: React.FC = () => {
           <span className="hidden lg:inline">Reset</span>
         </button>
 
-        {/* Executive Investigation Briefing Modal Trigger */}
+        {/* Executive Case Report Modal Trigger */}
         <button
           onClick={() => setReportModalOpen(true)}
           className="flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-700 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 border border-cyan-600 dark:border-cyan-500/40 text-white dark:text-cyan-300 text-xs font-semibold transition-all shadow-sm flex-shrink-0"
         >
           <FileText className="w-3.5 h-3.5 text-white dark:text-cyan-400" />
-          <span className="hidden sm:inline">Briefing</span>
+          <span className="hidden sm:inline">Case Report</span>
         </button>
       </div>
     </header>

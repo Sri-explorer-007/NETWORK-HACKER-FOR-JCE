@@ -31,13 +31,13 @@ export const Dashboard: React.FC = () => {
         <div className="space-y-1.5 z-10">
           <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-[10px] font-bold">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>INTELLIGENCE &amp; FRAUD NETWORK INVESTIGATION PLATFORM</span>
+            <span>CRIMINAL INVESTIGATION &amp; EVIDENCE PLATFORM</span>
           </div>
           <h1 className="text-2xl font-extrabold text-white tracking-tight">
-            Network Hunter Command Center
+            Investigation Dashboard
           </h1>
           <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
-            Time-aware multi-modal graph intelligence, evidence provenance verification, and grounded AI assistant for high-stakes investigations.
+            Track suspect connections, search verified case files, and uncover critical evidence using AI.
           </p>
         </div>
 
@@ -46,7 +46,7 @@ export const Dashboard: React.FC = () => {
             onClick={() => handleOpenCase('CASE-001')}
             className="flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold text-xs transition-all shadow-lg shadow-cyan-500/25"
           >
-            <span>LAUNCH OPERATION MERIDIAN</span>
+            <span>OPEN CASE (OPERATION MERIDIAN)</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -60,50 +60,50 @@ export const Dashboard: React.FC = () => {
             <FolderLock className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
           </div>
           <div className="text-2xl font-extrabold text-slate-900 dark:text-white font-mono">2</div>
-          <div className="text-[10px] text-slate-500 font-mono font-medium">CASE-001 &amp; CASE-002</div>
+          <div className="text-[10px] text-slate-500 font-mono font-medium">Case 001 &amp; Case 002</div>
         </div>
 
         <div className="bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 space-y-1 shadow-sm">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
-            <span className="text-[10px] font-mono uppercase tracking-wider font-bold">Entities</span>
+            <span className="text-[10px] font-mono uppercase tracking-wider font-bold">People &amp; Assets</span>
             <Users className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
           </div>
           <div className="text-2xl font-extrabold text-slate-900 dark:text-white font-mono">37</div>
-          <div className="text-[10px] text-slate-500 font-mono font-medium">Persons, Accounts, Locations</div>
+          <div className="text-[10px] text-slate-500 font-mono font-medium">Suspects, Accounts &amp; Places</div>
         </div>
 
         <div className="bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 space-y-1 shadow-sm">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
-            <span className="text-[10px] font-mono uppercase tracking-wider font-bold">Relationships</span>
+            <span className="text-[10px] font-mono uppercase tracking-wider font-bold">Connections</span>
             <Network className="w-4 h-4 text-purple-600 dark:text-purple-400" />
           </div>
           <div className="text-2xl font-extrabold text-slate-900 dark:text-white font-mono">38</div>
-          <div className="text-[10px] text-slate-500 font-mono font-medium">Associative Graph Edges</div>
+          <div className="text-[10px] text-slate-500 font-mono font-medium">Calls, Meetings &amp; Transfers</div>
         </div>
 
         <div className="bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 space-y-1 shadow-sm">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
-            <span className="text-[10px] font-mono uppercase tracking-wider font-bold">Evidence Docs</span>
+            <span className="text-[10px] font-mono uppercase tracking-wider font-bold">Evidence Files</span>
             <FileCheck2 className="w-4 h-4 text-amber-600 dark:text-amber-400" />
           </div>
           <div className="text-2xl font-extrabold text-slate-900 dark:text-white font-mono">25</div>
-          <div className="text-[10px] text-slate-500 font-mono font-medium">Indexed &amp; Embedded</div>
+          <div className="text-[10px] text-slate-500 font-mono font-medium">Official Records &amp; Logs</div>
         </div>
 
         <div className="bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 space-y-1 shadow-sm">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
-            <span className="text-[10px] font-mono uppercase tracking-wider font-bold">Patterns</span>
+            <span className="text-[10px] font-mono uppercase tracking-wider font-bold">Key Findings</span>
             <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
           </div>
           <div className="text-2xl font-extrabold text-slate-900 dark:text-white font-mono">4</div>
-          <div className="text-[10px] text-slate-500 font-mono font-medium">Conduit &amp; Nexus Findings</div>
+          <div className="text-[10px] text-slate-500 font-mono font-medium">Shared Accounts &amp; Meetings</div>
         </div>
       </div>
 
       {/* 3. Primary Investigation Cases Cards */}
       <div className="space-y-3">
         <div className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-          ACTIVE INVESTIGATION DOSSIERS
+          ACTIVE CASES
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -128,20 +128,20 @@ export const Dashboard: React.FC = () => {
                 Operation Meridian
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
-                Investigation into complex trade-based money laundering, maritime shipping anomalies at Dock 9, and shared financial conduits linked to Marcus Vance and Julian Thorne.
+                Investigation into money laundering, secret meetings at Dock 9, and shared bank accounts between Marcus Vance and Julian Thorne.
               </p>
             </div>
 
             <div className="pt-3.5 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
               <div className="text-[10px] font-mono text-slate-500">
-                Data Origin: <span className="text-amber-700 dark:text-amber-400 font-semibold">SYNTHETIC DEMO</span>
+                Data Origin: <span className="text-amber-700 dark:text-amber-400 font-semibold">DEMO DATASET</span>
               </div>
 
               <button
                 onClick={() => handleOpenCase('CASE-001')}
                 className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-50 hover:bg-cyan-100 dark:bg-cyan-500/20 dark:hover:bg-cyan-500/30 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-500/40 text-xs font-bold transition-all shadow-sm"
               >
-                <span>Open Investigation</span>
+                <span>Open Case</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -168,20 +168,20 @@ export const Dashboard: React.FC = () => {
                 Meridian Financial Link
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
-                Parallel inquiry into international banking shell structures and cross-case financial bridges intersecting with Julian Thorne and Zurich escrow conduits.
+                Investigation into overseas bank accounts and financial shell companies linked to Julian Thorne.
               </p>
             </div>
 
             <div className="pt-3.5 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
               <div className="text-[10px] font-mono text-slate-500">
-                Data Origin: <span className="text-amber-700 dark:text-amber-400 font-semibold">SYNTHETIC DEMO</span>
+                Data Origin: <span className="text-amber-700 dark:text-amber-400 font-semibold">DEMO DATASET</span>
               </div>
 
               <button
                 onClick={() => handleOpenCase('CASE-002')}
                 className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 dark:bg-purple-500/20 dark:hover:bg-purple-500/30 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-500/40 text-xs font-bold transition-all shadow-sm"
               >
-                <span>Open Investigation</span>
+                <span>Open Case</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -193,7 +193,7 @@ export const Dashboard: React.FC = () => {
       <div className="bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-3.5 shadow-sm">
         <div className="flex items-center space-x-2 text-xs font-mono font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">
           <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-          <span>FAST INVESTIGATION JUMP POINTS</span>
+          <span>QUICK AI QUESTIONS</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -202,10 +202,10 @@ export const Dashboard: React.FC = () => {
             className="text-left p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-cyan-300 dark:hover:border-cyan-500/50 hover:bg-cyan-50/50 dark:hover:bg-slate-900/90 transition-all text-xs group shadow-sm"
           >
             <div className="font-bold text-slate-900 dark:text-slate-200 group-hover:text-cyan-700 dark:group-hover:text-cyan-300 mb-1">
-              Marcus Vance ↔ Julian Thorne
+              How are Marcus &amp; Julian connected?
             </div>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 font-sans">
-              Inspect shared bank account A-001 and supporting mandate evidence EVD-005.
+              Shows the shared Chase bank account (A-001) and signed authorization form (EVD-005).
             </p>
           </button>
 
@@ -214,10 +214,10 @@ export const Dashboard: React.FC = () => {
             className="text-left p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-cyan-300 dark:hover:border-cyan-500/50 hover:bg-cyan-50/50 dark:hover:bg-slate-900/90 transition-all text-xs group shadow-sm"
           >
             <div className="font-bold text-slate-900 dark:text-slate-200 group-hover:text-cyan-700 dark:group-hover:text-cyan-300 mb-1">
-              Timeline Escalation Sequence
+              What happened in January?
             </div>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 font-sans">
-              Replay Call (Jan 10) → Meeting (Jan 15) → Wire Transfer (Jan 20).
+              Step-by-step sequence: Phone call → Warehouse meeting → $250,000 wire transfer.
             </p>
           </button>
 
@@ -226,10 +226,10 @@ export const Dashboard: React.FC = () => {
             className="text-left p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-amber-300 dark:hover:border-amber-500/50 hover:bg-amber-50/50 dark:hover:bg-slate-900/90 transition-all text-xs group shadow-sm"
           >
             <div className="font-bold text-slate-900 dark:text-slate-200 group-hover:text-amber-700 dark:group-hover:text-amber-300 mb-1">
-              David Vance (Ambiguity Safety)
+              Who is David Vance? (Name Check)
             </div>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 font-sans">
-              Demonstrates multi-candidate identity protection (P-002 vs P-011).
+              Smart identity check: Distinguishes the company manager (P-002) from an unrelated person (P-011).
             </p>
           </button>
         </div>

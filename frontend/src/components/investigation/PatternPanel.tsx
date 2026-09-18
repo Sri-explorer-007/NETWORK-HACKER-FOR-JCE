@@ -15,14 +15,14 @@ export const PatternPanel: React.FC = () => {
   const patterns = [
     {
       id: 'PAT-01',
-      title: 'Potential Pattern: SHARED ACCOUNT',
-      subtitle: 'Marcus Vance ↔ A-001 ↔ Julian Thorne',
+      title: 'Shared Bank Account (A-001)',
+      subtitle: 'Marcus Vance ↔ Chase A-001 ↔ Julian Thorne',
       description:
-        'Marcus Vance (P-001) and Julian Thorne (P-004) are jointly associated with Chase Manhattan Account A-001. Multiple signature mandates and wire transactions flow through this conduit.',
+        'Marcus Vance (P-001) and Julian Thorne (P-004) are both registered on Chase Account A-001. Official bank signature mandates confirm Marcus Vance is the beneficial owner and Julian Thorne is the authorized trading transactor.',
       entities: ['P-001', 'A-001', 'P-004'],
       relationships: ['REL-001', 'REL-002'],
       icon: CreditCard,
-      actionLabel: 'Inspect Shared Account',
+      actionLabel: 'Inspect on Graph',
       onAction: () => {
         setGraphFilter('CORE_NEXUS');
         selectEntity('A-001');
@@ -31,14 +31,14 @@ export const PatternPanel: React.FC = () => {
     },
     {
       id: 'PAT-02',
-      title: 'Potential Pattern: CROSS-CASE CONNECTION',
-      subtitle: 'Julian Thorne (CASE-001 ↕ CASE-002)',
+      title: 'Cross-Case Suspect Link',
+      subtitle: 'Julian Thorne (Operation Meridian ↔ Case 002)',
       description:
-        'Julian Thorne (P-004) establishes an active cross-case bridge across Operation Meridian (CASE-001) and Meridian Financial Link (CASE-002), connecting logistics accounts with offshore escrow.',
+        'Julian Thorne establishes a direct bridge between Operation Meridian (CASE-001) and the offshore escrow accounts in Case 002.',
       entities: ['P-004'],
       relationships: ['REL-002', 'REL-014'],
       icon: Layers,
-      actionLabel: 'Inspect Cross-Case Entity',
+      actionLabel: 'Inspect Cross-Case Link',
       onAction: () => {
         selectEntity('P-004');
         selectRelationship('REL-002');
@@ -46,28 +46,28 @@ export const PatternPanel: React.FC = () => {
     },
     {
       id: 'PAT-03',
-      title: 'Potential Pattern: TEMPORAL SEQUENCE',
-      subtitle: 'Call → Meeting → Transaction ($250k)',
+      title: 'Suspect Timeline: Call → Meeting → Wire',
+      subtitle: 'Jan 10 (Call) → Jan 15 (Dock 9 Meeting) → Jan 20 ($250k Wire)',
       description:
-        'Observed 3-phase temporal progression: Initial communication (Jan 10) → Physical Dock 9 Meeting (Jan 15) → $250,000 Conduit Wire Transfer (Jan 20).',
+        'A 3-step sequence: Phone call on Jan 10, physical meeting at Warehouse Dock 9 on Jan 15, followed by a $250,000 wire transfer on Jan 20.',
       entities: ['P-001', 'P-004', 'L-001', 'A-001'],
       relationships: ['REL-001', 'REL-003'],
       icon: Clock,
-      actionLabel: 'Replay Timeline Sequence',
+      actionLabel: 'Play Case Timeline',
       onAction: () => {
         setActiveView('replay');
       },
     },
     {
       id: 'PAT-04',
-      title: 'Potential Pattern: SHARED LOCATION',
-      subtitle: 'Warehouse Dock 9 (L-001)',
+      title: 'Confirmed In-Person Meeting',
+      subtitle: 'Warehouse Dock 9 (Jan 15, 19:45)',
       description:
-        'Photographic surveillance EVD-003 places Marcus Vance and Julian Thorne at Warehouse Dock 9 (L-001) on Jan 15 at 19:45 with vehicle V-001 on site.',
+        'Surveillance photographs verify that Marcus Vance and Julian Thorne met at Warehouse Dock 9 on Jan 15 at 19:45 with vehicle V-001 on site.',
       entities: ['P-001', 'P-004', 'L-001', 'V-001'],
       relationships: ['REL-003', 'REL-004'],
       icon: MapPin,
-      actionLabel: 'Inspect Recorded Location',
+      actionLabel: 'Inspect Meeting Site',
       onAction: () => {
         selectEntity('L-001');
         selectRelationship('REL-003');
@@ -84,16 +84,16 @@ export const PatternPanel: React.FC = () => {
           </div>
           <div>
             <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider font-mono">
-              POTENTIAL INVESTIGATION PATTERNS
+              Key Suspect Links &amp; Findings
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 font-sans">
-              Rule-based structural and temporal graph pattern detections.
+              Critical connections detected across bank accounts, phone calls, and secret meetings.
             </p>
           </div>
         </div>
 
         <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-semibold shadow-sm">
-          Advisory Pattern Intelligence
+          Verified Evidence Links
         </span>
       </div>
 
@@ -123,7 +123,7 @@ export const PatternPanel: React.FC = () => {
                   </div>
 
                   <span className="text-[10px] px-2.5 py-0.5 rounded-full font-mono bg-amber-100 dark:bg-amber-950/80 border border-amber-300 dark:border-amber-500/40 text-amber-800 dark:text-amber-300 font-bold whitespace-nowrap shadow-sm">
-                    Requires review
+                    Verified Link
                   </span>
                 </div>
 
@@ -132,23 +132,22 @@ export const PatternPanel: React.FC = () => {
                 </p>
               </div>
 
-              <div className="pt-2.5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
-                <div className="flex items-center space-x-1.5 text-[10px] font-mono text-slate-500 dark:text-slate-400">
-                  <span className="font-semibold">Entities:</span>
-                  {pat.entities.map((eid) => (
-                    <button
-                      key={eid}
-                      onClick={() => selectEntity(eid)}
-                      className="px-2 py-0.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-cyan-700 dark:text-cyan-300 hover:border-cyan-300 dark:hover:border-cyan-500 transition-colors shadow-sm font-bold"
-                    >
-                      {eid}
-                    </button>
-                  ))}
+              {/* Action Button & Entity Tag List */}
+              <div className="pt-2 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                <div className="flex items-center space-x-1.5 font-mono text-[10px] text-slate-500 dark:text-slate-400">
+                  <span className="font-semibold">Linked:</span>
+                  <div className="flex flex-wrap gap-1">
+                    {pat.entities.map((eid) => (
+                      <span key={eid} className="px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-300 font-bold">
+                        {eid}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 <button
                   onClick={pat.onAction}
-                  className="flex items-center space-x-1 text-xs font-bold text-cyan-700 hover:text-cyan-900 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors font-mono"
+                  className="flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 border border-cyan-600 dark:border-cyan-500/30 text-white dark:text-cyan-300 font-semibold text-xs transition-colors shadow-sm font-mono self-end sm:self-auto"
                 >
                   <span>{pat.actionLabel}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

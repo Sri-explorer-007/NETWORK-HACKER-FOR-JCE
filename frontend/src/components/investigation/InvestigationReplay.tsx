@@ -56,7 +56,7 @@ export const InvestigationReplay: React.FC = () => {
     },
     {
       label: 'JAN 20',
-      type: 'TRANSACTION',
+      type: 'TRANSFER',
       desc: 'Account A-001 ($250,000)',
       targetIndex: 4,
       focusAction: () => {
@@ -68,7 +68,7 @@ export const InvestigationReplay: React.FC = () => {
     {
       label: 'FEB–MAR',
       type: 'EXPANSION',
-      desc: 'Network Expansion',
+      desc: 'Further Activity & Transfers',
       targetIndex: 7,
       focusAction: () => {
         setTimelineIndex(Math.min(7, timeline.length - 1));
@@ -85,7 +85,7 @@ export const InvestigationReplay: React.FC = () => {
           <div className="flex items-center space-x-1.5">
             <Clock className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
             <span className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider font-mono">
-              TIMELINE REPLAY
+              CASE TIMELINE
             </span>
           </div>
 
@@ -99,7 +99,7 @@ export const InvestigationReplay: React.FC = () => {
           </span>
 
           <span className="hidden md:inline-block text-[10px] font-mono text-slate-500 font-medium">
-            • Network state at selected time
+            • Chronological case events
           </span>
         </div>
 
@@ -126,7 +126,7 @@ export const InvestigationReplay: React.FC = () => {
             ) : (
               <>
                 <Play className="w-3.5 h-3.5 fill-current" />
-                <span>PLAY REPLAY</span>
+                <span>AUTO PLAY</span>
               </>
             )}
           </button>

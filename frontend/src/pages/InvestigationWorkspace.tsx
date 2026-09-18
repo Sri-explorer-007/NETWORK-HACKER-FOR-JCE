@@ -16,8 +16,8 @@ export const InvestigationWorkspace: React.FC = () => {
     return (
       <div className="flex-1 flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 space-y-3 font-mono select-none transition-colors">
         <div className="w-10 h-10 rounded-full border-3 border-cyan-500 border-t-transparent animate-spin shadow-sm" />
-        <span className="text-xs font-bold text-slate-800 dark:text-slate-300">Synchronizing Knowledge Graph &amp; Evidence Records...</span>
-        <span className="text-[10px] text-slate-500">Connecting to Operation Meridian (CASE-001)</span>
+        <span className="text-xs font-bold text-slate-800 dark:text-slate-300">Loading Case Files &amp; Network Graph...</span>
+        <span className="text-[10px] text-slate-500">Opening Operation Meridian (CASE-001)</span>
       </div>
     );
   }
@@ -66,15 +66,15 @@ export const InvestigationWorkspace: React.FC = () => {
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 bg-slate-100/60 dark:bg-slate-950 transition-colors">
           <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800/80">
             <div className="flex items-center space-x-2">
-              <span className="text-xs font-mono font-bold text-cyan-600 dark:text-cyan-400">INVESTIGATION WORKSPACE</span>
+              <span className="text-xs font-mono font-bold text-cyan-600 dark:text-cyan-400">INVESTIGATION</span>
               <span className="text-slate-400">/</span>
-              <span className="text-xs font-mono font-bold text-slate-900 dark:text-white">AI INVESTIGATION ASSISTANT (LLM)</span>
+              <span className="text-xs font-mono font-bold text-slate-900 dark:text-white">ASK AI ASSISTANT</span>
             </div>
             <button
               onClick={() => setActiveView('workspace')}
               className="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-300 transition-all shadow-sm font-mono flex items-center space-x-1.5"
             >
-              <span>← Back to Network Graph</span>
+              <span>← Back to Network View</span>
             </button>
           </div>
           <InvestigationAssistant />

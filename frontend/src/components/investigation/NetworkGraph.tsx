@@ -72,50 +72,50 @@ export const NetworkGraph: React.FC = () => {
   };
 
   const getRoleTag = (node: GraphNode): string => {
-    if (node.id === 'P-001') return 'PRIMARY TARGET';
-    if (node.id === 'A-001') return 'SHARED NEXUS HUB';
-    if (node.id === 'P-004') return 'KEY FACILITATOR';
-    if (node.id === 'L-001') return 'MEETING VENUE';
-    if (node.id === 'PH-002') return 'BURNER COMMS';
-    if (node.id === 'V-001') return 'SURVEILLANCE';
+    if (node.id === 'P-001') return 'MAIN SUSPECT';
+    if (node.id === 'A-001') return 'SHARED ACCOUNT';
+    if (node.id === 'P-004') return 'KEY ASSOCIATE';
+    if (node.id === 'L-001') return 'MEETING PLACE';
+    if (node.id === 'PH-002') return 'BURNER PHONE';
+    if (node.id === 'V-001') return 'COMPANY SUV';
     if (node.id === 'P-002') return 'OPERATIONS MGR';
     if (node.id === 'P-003') return 'FINANCIAL BROKER';
-    if (node.id === 'ORG-002') return 'LOGISTICS HUB';
-    if (node.id === 'A-003') return 'ESCROW ROUTING';
+    if (node.id === 'ORG-002') return 'LOGISTICS CO.';
+    if (node.id === 'A-003') return 'ESCROW ACCOUNT';
     return node.entity_type;
   };
 
   // Clean, high-legibility short labels for edge badges
   const getCleanEdgeLabel = (edge: any): string => {
     if ((edge.source === 'P-001' && edge.target === 'A-001') || (edge.source === 'A-001' && edge.target === 'P-001')) {
-      return 'BENEFICIAL OWNER';
+      return 'ACCOUNT OWNER';
     }
     if ((edge.source === 'P-004' && edge.target === 'A-001') || (edge.source === 'A-001' && edge.target === 'P-004')) {
-      return 'AUTHORIZED SIGNATORY';
+      return 'AUTHORIZED SIGNER';
     }
     if ((edge.source === 'P-001' && edge.target === 'PH-002') || (edge.source === 'PH-002' && edge.target === 'P-001')) {
       return 'USED BURNER';
     }
     if ((edge.source === 'P-001' && edge.target === 'L-001') || (edge.source === 'L-001' && edge.target === 'P-001')) {
-      return 'MET AT DOCK';
+      return 'MET AT WAREHOUSE';
     }
     if ((edge.source === 'P-004' && edge.target === 'L-001') || (edge.source === 'L-001' && edge.target === 'P-004')) {
-      return 'MET AT DOCK';
+      return 'MET AT WAREHOUSE';
     }
     if ((edge.source === 'P-001' && edge.target === 'P-002') || (edge.source === 'P-002' && edge.target === 'P-001')) {
-      return 'BROTHER / OPS';
+      return 'BROTHER / MANAGER';
     }
     if ((edge.source === 'P-001' && edge.target === 'P-004') || (edge.source === 'P-004' && edge.target === 'P-001')) {
       return 'COORDINATED';
     }
     if ((edge.source === 'P-004' && edge.target === 'A-003') || (edge.source === 'A-003' && edge.target === 'P-004')) {
-      return 'WIRED $250K';
+      return 'TRANSFERRED $250K';
     }
     if ((edge.source === 'P-001' && edge.target === 'ORG-002') || (edge.source === 'ORG-002' && edge.target === 'P-001')) {
       return 'OWNS 60%';
     }
     if ((edge.source === 'ORG-002' && edge.target === 'V-001') || (edge.source === 'V-001' && edge.target === 'ORG-002')) {
-      return 'FLEET VEHICLE';
+      return 'COMPANY VEHICLE';
     }
     return edge.relationship_type.replace(/_/g, ' ');
   };
@@ -419,10 +419,10 @@ export const NetworkGraph: React.FC = () => {
         <div className="pointer-events-auto flex items-center space-x-2 bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-800 backdrop-blur-md px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl shadow-md transition-colors">
           <div className="w-2.5 h-2.5 rounded-full bg-cyan-500 animate-pulse flex-shrink-0" />
           <span className="font-mono text-[10px] sm:text-xs font-bold text-slate-800 dark:text-slate-100 uppercase tracking-wider">
-            PRIMARY INVESTIGATION PROOF:
+            💡 KEY EVIDENCE LINK:
           </span>
           <span className="text-[11px] sm:text-xs text-slate-700 dark:text-slate-300 font-sans truncate">
-            Marcus Vance <strong className="text-cyan-700 dark:text-cyan-400 font-mono">(P-001)</strong> &amp; Julian Thorne <strong className="text-cyan-700 dark:text-cyan-400 font-mono">(P-004)</strong> converge on Shared Account <strong className="text-emerald-700 dark:text-emerald-400 font-mono">A-001</strong> ($250k Wire).
+            Marcus Vance <strong className="text-cyan-700 dark:text-cyan-400 font-mono">(P-001)</strong> and Julian Thorne <strong className="text-cyan-700 dark:text-cyan-400 font-mono">(P-004)</strong> share Bank Account <strong className="text-emerald-700 dark:text-emerald-400 font-mono">A-001</strong> ($250,000 Transfer).
           </span>
         </div>
 
@@ -437,7 +437,7 @@ export const NetworkGraph: React.FC = () => {
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            Core Nexus (Clean Focus)
+            Main Suspects
           </button>
           <button
             onClick={() => setGraphFilter('ALL')}
@@ -447,7 +447,7 @@ export const NetworkGraph: React.FC = () => {
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            All 37 Nodes
+            All Connections
           </button>
           <button
             onClick={() => setGraphFilter('FINANCIAL')}
@@ -457,7 +457,7 @@ export const NetworkGraph: React.FC = () => {
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            Financial Links
+            Money Trail
           </button>
         </div>
       </div>

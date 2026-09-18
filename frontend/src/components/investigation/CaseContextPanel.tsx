@@ -33,7 +33,15 @@ export const CaseContextPanel: React.FC = () => {
     });
   }, [nodes, typeFilter, searchQuery]);
 
-  const typePills = ['ALL', 'PERSON', 'ACCOUNT', 'LOCATION', 'PHONE', 'ORGANIZATION', 'VEHICLE'];
+  const typePills = [
+    { id: 'ALL', label: 'All' },
+    { id: 'PERSON', label: 'People' },
+    { id: 'ACCOUNT', label: 'Accounts' },
+    { id: 'LOCATION', label: 'Places' },
+    { id: 'PHONE', label: 'Phones' },
+    { id: 'ORGANIZATION', label: 'Companies' },
+    { id: 'VEHICLE', label: 'Vehicles' },
+  ];
 
   return (
     <div className="hidden xl:flex w-72 2xl:w-80 bg-white dark:bg-slate-900/70 border-r border-slate-200 dark:border-slate-800/80 flex-col h-full flex-shrink-0 backdrop-blur-md transition-colors select-none">
@@ -42,7 +50,7 @@ export const CaseContextPanel: React.FC = () => {
         <div className="flex items-center justify-between mb-1.5">
           <span className="text-[10px] font-mono uppercase text-slate-500 dark:text-slate-400 font-bold tracking-wider flex items-center space-x-1">
             <FolderOpen className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-            <span>INVESTIGATION DOSSIER</span>
+            <span>CASE FILE</span>
           </span>
           <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 border border-emerald-300 dark:border-emerald-500/40 text-emerald-800 dark:text-emerald-300 font-mono font-bold shadow-sm">
             {activeCase?.status || 'ACTIVE'}
@@ -58,15 +66,15 @@ export const CaseContextPanel: React.FC = () => {
           <span>{activeCase?.case_number || 'NH-2026-001'}</span>
         </div>
 
-        {/* Metric Badges Grid (White boxes with silver borders in Light Mode) */}
+        {/* Metric Badges Grid */}
         <div className="grid grid-cols-4 gap-1.5 mt-3 pt-3 border-t border-slate-200 dark:border-slate-800/60 text-center font-mono">
           <div className="bg-slate-50 dark:bg-slate-950/80 p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
             <div className="text-xs font-bold text-cyan-700 dark:text-cyan-400">{network?.total_nodes || 37}</div>
-            <div className="text-[9px] text-slate-500 dark:text-slate-400 font-semibold">Entities</div>
+            <div className="text-[9px] text-slate-500 dark:text-slate-400 font-semibold">People/Assets</div>
           </div>
           <div className="bg-slate-50 dark:bg-slate-950/80 p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
             <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400">{network?.total_edges || 38}</div>
-            <div className="text-[9px] text-slate-500 dark:text-slate-400 font-semibold">Rels</div>
+            <div className="text-[9px] text-slate-500 dark:text-slate-400 font-semibold">Links</div>
           </div>
           <div className="bg-slate-50 dark:bg-slate-950/80 p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
             <div className="text-xs font-bold text-amber-700 dark:text-amber-400">25</div>
@@ -87,7 +95,7 @@ export const CaseContextPanel: React.FC = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search entities &amp; targets..."
+            placeholder="Search suspects, accounts, files..."
             className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-200 text-xs rounded-lg pl-8 pr-2.5 py-1.5 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500 font-sans shadow-sm"
           />
         </div>
@@ -96,15 +104,15 @@ export const CaseContextPanel: React.FC = () => {
         <div className="flex items-center space-x-1 overflow-x-auto pb-0.5 text-[10px] font-mono no-scrollbar">
           {typePills.map((p) => (
             <button
-              key={p}
-              onClick={() => setTypeFilter(p)}
+              key={p.id}
+              onClick={() => setTypeFilter(p.id)}
               className={`px-2 py-0.5 rounded-lg transition-all whitespace-nowrap shadow-sm ${
-                typeFilter === p
+                typeFilter === p.id
                   ? 'bg-cyan-100 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-500/40 font-bold'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800'
               }`}
             >
-              {p}
+              {p.label}
             </button>
           ))}
         </div>
@@ -113,8 +121,8 @@ export const CaseContextPanel: React.FC = () => {
       {/* 3. Entity Roster List */}
       <div className="flex-1 overflow-y-auto p-2 space-y-1">
         <div className="px-2 py-1 text-[10px] font-mono text-slate-500 dark:text-slate-400 font-bold tracking-wider flex items-center justify-between">
-          <span>ENTITIES ({filteredEntities.length})</span>
-          <span>CLICK TO FOCUS</span>
+          <span>PEOPLE &amp; ASSETS ({filteredEntities.length})</span>
+          <span>CLICK TO INSPECT</span>
         </div>
 
         {filteredEntities.map((ent) => {

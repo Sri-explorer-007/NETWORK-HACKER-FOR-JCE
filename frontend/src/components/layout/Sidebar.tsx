@@ -31,23 +31,23 @@ export const Sidebar: React.FC = () => {
     {
       group: 'OVERVIEW',
       items: [
-        { id: 'dashboard', label: 'Investigation Overview', icon: LayoutDashboard },
+        { id: 'dashboard', label: 'Case Overview', icon: LayoutDashboard },
       ],
     },
     {
       group: 'INVESTIGATE',
       items: [
-        { id: 'workspace', label: 'Investigation Workspace', icon: Network },
-        { id: 'assistant', label: 'AI Assistant (LLM)', icon: Sparkles, badge: 'LLM' },
-        { id: 'replay', label: 'Timeline Replay', icon: History },
-        { id: 'patterns', label: 'Potential Patterns', icon: Sparkles },
-        { id: 'evidence', label: 'Evidence & Provenance', icon: FileCheck2 },
+        { id: 'workspace', label: 'Network Graph', icon: Network },
+        { id: 'assistant', label: 'AI Assistant', icon: Sparkles, badge: 'AI' },
+        { id: 'replay', label: 'Case Timeline', icon: History },
+        { id: 'patterns', label: 'Suspect Links', icon: Sparkles },
+        { id: 'evidence', label: 'Evidence Files', icon: FileCheck2 },
       ],
     },
     {
       group: 'SYSTEM',
       items: [
-        { id: 'settings', label: 'Governance & Auditing', icon: Sliders, disabled: true },
+        { id: 'settings', label: 'System Settings', icon: Sliders, disabled: true },
       ],
     },
   ];
@@ -198,7 +198,7 @@ export const Sidebar: React.FC = () => {
           ))}
         </nav>
 
-        {/* Prominent Quick Touch Card for AI Investigation Assistant (LLM) */}
+        {/* Prominent Quick Touch Card for AI Assistant */}
         <div className="hidden lg:block px-3 pt-3">
           <button
             onClick={() => setActiveView('assistant')}
@@ -214,11 +214,11 @@ export const Sidebar: React.FC = () => {
                 <span>Ask AI Assistant</span>
               </div>
               <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/80 text-cyan-800 dark:text-cyan-200 border border-cyan-300 dark:border-cyan-500/40">
-                LLM
+                AI
               </span>
             </div>
             <p className="text-[10px] text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-200 leading-tight">
-              Touch to open grounded LLM investigation assistant
+              Ask any question about suspects, accounts, or events
             </p>
           </button>
         </div>
@@ -228,10 +228,10 @@ export const Sidebar: React.FC = () => {
       <div className="p-2 sm:p-3 border-t border-slate-200 dark:border-slate-800/80 text-[10px] text-slate-500 dark:text-slate-400 bg-slate-50/50 dark:bg-slate-950 flex flex-col items-center lg:items-start">
         <div className="flex items-center space-x-1.5">
           <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
-          <span className="hidden lg:inline font-mono font-medium text-slate-700 dark:text-slate-400">Guardrails Active</span>
+          <span className="hidden lg:inline font-mono font-medium text-slate-700 dark:text-slate-400">Evidence Guardrails On</span>
         </div>
         <div className="hidden lg:block text-[9px] text-slate-500 mt-0.5 font-mono">
-          Advisory Investigation Analysis
+          Investigator Decision Support
         </div>
       </div>
     </aside>
