@@ -36,7 +36,7 @@ export const CaseContextPanel: React.FC = () => {
   const typePills = ['ALL', 'PERSON', 'ACCOUNT', 'LOCATION', 'PHONE', 'ORGANIZATION', 'VEHICLE'];
 
   return (
-    <div className="w-80 bg-white dark:bg-slate-900/70 border-r border-slate-200 dark:border-slate-800/80 flex flex-col h-full flex-shrink-0 backdrop-blur-md transition-colors select-none">
+    <div className="hidden xl:flex w-72 2xl:w-80 bg-white dark:bg-slate-900/70 border-r border-slate-200 dark:border-slate-800/80 flex-col h-full flex-shrink-0 backdrop-blur-md transition-colors select-none">
       {/* 1. Case Dossier Summary Header */}
       <div className="p-4 border-b border-slate-200 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-950/40">
         <div className="flex items-center justify-between mb-1.5">

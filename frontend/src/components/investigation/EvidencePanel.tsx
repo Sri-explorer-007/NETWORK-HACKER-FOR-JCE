@@ -24,7 +24,7 @@ export const EvidencePanel: React.FC = () => {
 
   if (!selectedRelationshipId || !relationshipEvidence) {
     return (
-      <div className="w-80 md:w-96 bg-white dark:bg-slate-900/70 border-l border-slate-200 dark:border-slate-800/80 flex flex-col items-center justify-center p-6 text-center text-slate-500 backdrop-blur-md select-none transition-colors">
+      <div className="hidden lg:flex w-72 xl:w-80 2xl:w-96 bg-white dark:bg-slate-900/70 border-l border-slate-200 dark:border-slate-800/80 flex-col items-center justify-center p-6 text-center text-slate-500 backdrop-blur-md select-none transition-colors">
         <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 mb-3 shadow-sm">
           <Link2 className="w-6 h-6" />
         </div>
@@ -100,7 +100,7 @@ export const EvidencePanel: React.FC = () => {
   };
 
   return (
-    <div className="w-80 md:w-96 bg-white dark:bg-slate-900/90 border-l border-slate-200 dark:border-slate-800/80 flex flex-col h-full flex-shrink-0 backdrop-blur-md overflow-y-auto select-none transition-colors shadow-sm">
+    <div className="w-full sm:w-80 md:w-88 xl:w-96 bg-white dark:bg-slate-900/90 border-l border-slate-200 dark:border-slate-800/80 flex flex-col h-full flex-shrink-0 backdrop-blur-md overflow-y-auto select-none transition-colors shadow-sm">
       {/* 1. Header */}
       <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/70 dark:bg-slate-950/60 sticky top-0 z-10 backdrop-blur-md">
         <div className="flex items-center space-x-2">

@@ -34,16 +34,15 @@ export const TopBar: React.FC = () => {
   } = useInvestigation();
 
   return (
-    <header className="h-14 bg-white dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800/80 backdrop-blur-xl px-4 flex items-center justify-between z-30 select-none transition-colors shadow-sm">
-      {/* Left: Case Selector & Status */}
-      <div className="flex items-center space-x-3">
-
+    <header className="h-14 bg-white dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800/80 backdrop-blur-xl px-2 sm:px-4 flex items-center justify-between z-30 select-none transition-colors shadow-sm gap-2">
+      {/* Left: Case Selector & Priority Badges */}
+      <div className="flex items-center space-x-2 flex-shrink min-w-0">
         {/* Case Dropdown */}
-        <div className="relative flex items-center">
+        <div className="relative flex items-center min-w-0">
           <select
             value={activeCaseId}
             onChange={(e) => setActiveCaseId(e.target.value)}
-            className="appearance-none bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white font-medium text-xs rounded-lg pl-2.5 pr-7 py-1.5 focus:outline-none focus:border-cyan-500 hover:border-slate-300 dark:hover:border-slate-600 transition-colors cursor-pointer font-mono shadow-sm"
+            className="appearance-none bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white font-medium text-xs rounded-lg pl-2.5 pr-7 py-1.5 focus:outline-none focus:border-cyan-500 hover:border-slate-300 dark:hover:border-slate-600 transition-colors cursor-pointer font-mono shadow-sm truncate max-w-[160px] sm:max-w-[220px] md:max-w-xs"
           >
             {cases.length > 0 ? (
               cases.map((c) => (
@@ -59,7 +58,7 @@ export const TopBar: React.FC = () => {
         </div>
 
         {/* Status Pills */}
-        <div className="hidden sm:flex items-center space-x-1.5 font-mono text-[10px]">
+        <div className="hidden lg:flex items-center space-x-1.5 font-mono text-[10px] flex-shrink-0">
           <span className="px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-500/40 text-emerald-700 dark:text-emerald-300 font-semibold shadow-sm">
             {activeCase?.status || 'ACTIVE'}
           </span>
@@ -69,23 +68,23 @@ export const TopBar: React.FC = () => {
         </div>
       </div>
 
-      {/* Center: Global Search Bar */}
-      <div className="hidden md:flex flex-1 max-w-xs lg:max-w-sm mx-4">
+      {/* Center: Global Search Bar (Hidden on smaller screens, expands on larger) */}
+      <div className="hidden 2xl:flex flex-1 max-w-xs mx-2">
         <div className="relative flex items-center w-full">
           <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search entities, accounts, records..."
-            className="w-full bg-slate-50 dark:bg-slate-950/90 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-200 text-xs rounded-lg pl-8 pr-3 py-1.5 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-all font-sans shadow-sm"
+            placeholder="Search entities, accounts..."
+            className="w-full bg-slate-50 dark:bg-slate-950/90 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-200 text-xs rounded-lg pl-8 pr-3 py-1.5 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500 font-sans shadow-sm"
           />
         </div>
       </div>
 
-      {/* Right: View Buttons, Focus Mode, Theme Switcher, Reset & Briefing */}
-      <div className="flex items-center space-x-2">
-        {/* View Navigation Shortcuts */}
+      {/* Right: View Navigation, Focus Mode, Theme Switcher, Reset & Briefing */}
+      <div className="flex items-center space-x-1 sm:space-x-1.5 flex-shrink-0">
+        {/* View Navigation Shortcuts (Adaptive on desktop) */}
         <div className="hidden xl:flex items-center bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg p-0.5 text-xs font-mono shadow-sm">
           <button
             onClick={() => setActiveView('workspace')}
@@ -136,45 +135,44 @@ export const TopBar: React.FC = () => {
         {/* Theme Switcher Toggle (Sun / Moon) */}
         <button
           onClick={toggleTheme}
-          title={theme === 'dark' ? 'Switch to Light Theme (White & Silver)' : 'Switch to Dark Theme'}
-          className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-950 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-amber-300 transition-all shadow-sm"
+          title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
+          className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-950 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-amber-300 transition-all shadow-sm flex-shrink-0"
           aria-label="Toggle Theme"
         >
-          {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400 animate-spin-slow" /> : <Moon className="w-4 h-4 text-slate-700" />}
+          {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
         </button>
 
-        {/* Presentation Controls: Focus Mode & Reset View */}
-        <div className="flex items-center space-x-1.5 border-l border-slate-200 dark:border-slate-800 pl-2">
-          <button
-            onClick={toggleFocusMode}
-            title={focusMode ? 'Exit Presentation Focus Mode' : 'Enter Presentation Focus Mode (Projector Optimization)'}
-            className={`flex items-center space-x-1 px-2.5 py-1.5 rounded-lg border text-xs font-mono transition-all shadow-sm ${
-              focusMode
-                ? 'bg-cyan-50 dark:bg-cyan-950 border-cyan-300 dark:border-cyan-400 text-cyan-700 dark:text-cyan-300'
-                : 'bg-slate-100 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700'
-            }`}
-          >
-            {focusMode ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
-            <span className="hidden md:inline">{focusMode ? 'Normal View' : 'Focus Mode'}</span>
-          </button>
+        {/* Presentation Controls: Focus Mode */}
+        <button
+          onClick={toggleFocusMode}
+          title={focusMode ? 'Exit Focus Mode' : 'Enter Presentation Focus Mode'}
+          className={`flex items-center space-x-1 px-2 sm:px-2.5 py-1.5 rounded-lg border text-xs font-mono transition-all shadow-sm flex-shrink-0 ${
+            focusMode
+              ? 'bg-cyan-50 dark:bg-cyan-950 border-cyan-300 dark:border-cyan-400 text-cyan-700 dark:text-cyan-300'
+              : 'bg-slate-100 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+          }`}
+        >
+          {focusMode ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+          <span className="hidden md:inline">{focusMode ? 'Normal' : 'Focus'}</span>
+        </button>
 
-          <button
-            onClick={resetInvestigationView}
-            title="Reset to Default Jury State (CASE-001 Core Nexus)"
-            className="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-950 dark:hover:bg-slate-850 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-400 hover:text-amber-700 dark:hover:text-amber-300 text-xs font-mono transition-all shadow-sm"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span className="hidden lg:inline">Reset View</span>
-          </button>
-        </div>
+        {/* Reset View Button */}
+        <button
+          onClick={resetInvestigationView}
+          title="Reset to Default Jury State (CASE-001 Core Nexus)"
+          className="flex items-center space-x-1 px-2 sm:px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-950 dark:hover:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-400 hover:text-amber-700 dark:hover:text-amber-300 text-xs font-mono transition-all shadow-sm flex-shrink-0"
+        >
+          <RotateCcw className="w-3.5 h-3.5" />
+          <span className="hidden lg:inline">Reset</span>
+        </button>
 
         {/* Executive Investigation Briefing Modal Trigger */}
         <button
           onClick={() => setReportModalOpen(true)}
-          className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-700 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 border border-cyan-600 dark:border-cyan-500/40 text-white dark:text-cyan-300 text-xs font-semibold transition-all shadow-sm"
+          className="flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-700 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 border border-cyan-600 dark:border-cyan-500/40 text-white dark:text-cyan-300 text-xs font-semibold transition-all shadow-sm flex-shrink-0"
         >
           <FileText className="w-3.5 h-3.5 text-white dark:text-cyan-400" />
-          <span>Briefing</span>
+          <span className="hidden sm:inline">Briefing</span>
         </button>
       </div>
     </header>
