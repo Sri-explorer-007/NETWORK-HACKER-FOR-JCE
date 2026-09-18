@@ -10,7 +10,7 @@ import { ReportPreview } from '../components/investigation/ReportPreview';
 import { AlertCircle, RefreshCw } from 'lucide-react';
 
 export const InvestigationWorkspace: React.FC = () => {
-  const { loading, error, refreshData, activeView, focusMode } = useInvestigation();
+  const { loading, error, refreshData, activeView, setActiveView, focusMode } = useInvestigation();
 
   if (loading) {
     return (
@@ -61,6 +61,23 @@ export const InvestigationWorkspace: React.FC = () => {
             <EvidencePanel />
           </div>
           <InvestigationReplay />
+        </div>
+      ) : activeView === 'assistant' ? (
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 bg-slate-100/60 dark:bg-slate-950 transition-colors">
+          <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800/80">
+            <div className="flex items-center space-x-2">
+              <span className="text-xs font-mono font-bold text-cyan-600 dark:text-cyan-400">INVESTIGATION WORKSPACE</span>
+              <span className="text-slate-400">/</span>
+              <span className="text-xs font-mono font-bold text-slate-900 dark:text-white">AI INVESTIGATION ASSISTANT (LLM)</span>
+            </div>
+            <button
+              onClick={() => setActiveView('workspace')}
+              className="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-300 transition-all shadow-sm font-mono flex items-center space-x-1.5"
+            >
+              <span>← Back to Network Graph</span>
+            </button>
+          </div>
+          <InvestigationAssistant />
         </div>
       ) : (
         /* 2. Primary Standard Investigation Workspace View */

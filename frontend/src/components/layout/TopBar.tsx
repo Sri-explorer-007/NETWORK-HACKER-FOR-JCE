@@ -98,6 +98,17 @@ export const TopBar: React.FC = () => {
             <span>Network</span>
           </button>
           <button
+            onClick={() => setActiveView('assistant')}
+            className={`flex items-center space-x-1 px-2.5 py-1 rounded-md transition-all ${
+              activeView === 'assistant'
+                ? 'bg-white dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-slate-200 dark:border-cyan-500/30 font-semibold shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+            }`}
+          >
+            <Sparkles className="w-3 h-3 text-cyan-600 dark:text-cyan-400" />
+            <span>AI Assistant</span>
+          </button>
+          <button
             onClick={() => setActiveView('replay')}
             className={`flex items-center space-x-1 px-2.5 py-1 rounded-md transition-all ${
               activeView === 'replay'

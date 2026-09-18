@@ -15,6 +15,7 @@ interface NavItem {
   id: string;
   label: string;
   icon: LucideIcon;
+  badge?: string;
   disabled?: boolean;
 }
 
@@ -37,6 +38,7 @@ export const Sidebar: React.FC = () => {
       group: 'INVESTIGATE',
       items: [
         { id: 'workspace', label: 'Investigation Workspace', icon: Network },
+        { id: 'assistant', label: 'AI Assistant (LLM)', icon: Sparkles, badge: 'LLM' },
         { id: 'replay', label: 'Timeline Replay', icon: History },
         { id: 'patterns', label: 'Potential Patterns', icon: Sparkles },
         { id: 'evidence', label: 'Evidence & Provenance', icon: FileCheck2 },
@@ -56,10 +58,26 @@ export const Sidebar: React.FC = () => {
         <div className="flex flex-col items-center space-y-4">
           <button
             onClick={() => setActiveView('workspace')}
-            className="w-9 h-9 rounded-lg bg-cyan-50 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400 hover:bg-cyan-100 dark:hover:bg-cyan-500/20 shadow-sm"
+            className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all ${
+              activeView === 'workspace'
+                ? 'bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-500/40 shadow-sm'
+                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900'
+            }`}
             title="Investigation Workspace"
           >
             <Network className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => setActiveView('assistant')}
+            className={`w-9 h-9 rounded-lg relative flex items-center justify-center transition-all ${
+              activeView === 'assistant'
+                ? 'bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-500/40 shadow-sm'
+                : 'text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900'
+            }`}
+            title="AI Investigation Assistant (LLM)"
+          >
+            <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
           </button>
           <button
             onClick={() => setActiveView('replay')}
@@ -155,7 +173,7 @@ export const Sidebar: React.FC = () => {
                       onClick={() => !item.disabled && setActiveView(item.id as any)}
                       disabled={item.disabled}
                       title={item.label}
-                      className={`w-full flex items-center justify-center lg:justify-start space-x-0 lg:space-x-2.5 p-2 lg:px-2.5 lg:py-2 rounded-xl text-xs font-medium transition-all ${
+                      className={`w-full flex items-center justify-between p-2 lg:px-2.5 lg:py-2 rounded-xl text-xs font-medium transition-all ${
                         isActive
                           ? 'bg-cyan-50 dark:bg-cyan-500/15 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-500/30 font-semibold shadow-sm'
                           : item.disabled
@@ -163,8 +181,15 @@ export const Sidebar: React.FC = () => {
                           : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900/60'
                       }`}
                     >
-                      <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-cyan-600 dark:text-cyan-400' : item.disabled ? 'text-slate-300 dark:text-slate-700' : 'text-slate-500 dark:text-slate-400'}`} />
-                      <span className="hidden lg:inline truncate">{item.label}</span>
+                      <div className="flex items-center space-x-0 lg:space-x-2.5 min-w-0">
+                        <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-cyan-600 dark:text-cyan-400' : item.disabled ? 'text-slate-300 dark:text-slate-700' : 'text-slate-500 dark:text-slate-400'}`} />
+                        <span className="hidden lg:inline truncate">{item.label}</span>
+                      </div>
+                      {item.badge && (
+                        <span className="hidden lg:inline text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-500/30">
+                          {item.badge}
+                        </span>
+                      )}
                     </button>
                   );
                 })}
@@ -172,6 +197,31 @@ export const Sidebar: React.FC = () => {
             </div>
           ))}
         </nav>
+
+        {/* Prominent Quick Touch Card for AI Investigation Assistant (LLM) */}
+        <div className="hidden lg:block px-3 pt-3">
+          <button
+            onClick={() => setActiveView('assistant')}
+            className={`w-full p-2.5 rounded-xl border text-left transition-all group shadow-sm ${
+              activeView === 'assistant'
+                ? 'bg-cyan-50 dark:bg-cyan-950/60 border-cyan-300 dark:border-cyan-500/50'
+                : 'bg-gradient-to-r from-cyan-50/60 to-blue-50/60 dark:from-cyan-950/20 dark:to-blue-950/20 border-slate-200 dark:border-slate-800 hover:border-cyan-300 dark:hover:border-cyan-500/40'
+            }`}
+          >
+            <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center space-x-1.5 text-cyan-800 dark:text-cyan-300 font-bold text-xs font-mono">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400 animate-pulse" />
+                <span>Ask AI Assistant</span>
+              </div>
+              <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/80 text-cyan-800 dark:text-cyan-200 border border-cyan-300 dark:border-cyan-500/40">
+                LLM
+              </span>
+            </div>
+            <p className="text-[10px] text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-200 leading-tight">
+              Touch to open grounded LLM investigation assistant
+            </p>
+          </button>
+        </div>
       </div>
 
       {/* Footer / System Status */}

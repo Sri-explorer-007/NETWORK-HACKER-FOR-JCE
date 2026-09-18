@@ -21,7 +21,7 @@ interface InvestigationContextType {
   relationshipEvidence: RelationshipEvidence | null;
   timelineIndex: number;
   isPlayingTimeline: boolean;
-  activeView: 'dashboard' | 'workspace' | 'network' | 'replay' | 'patterns' | 'evidence';
+  activeView: 'dashboard' | 'workspace' | 'network' | 'replay' | 'patterns' | 'evidence' | 'assistant';
   graphFilter: 'ALL' | 'CORE_NEXUS' | 'FINANCIAL' | 'PERSON' | 'ACCOUNT';
   focusMode: boolean;
   theme: 'light' | 'dark';
@@ -41,7 +41,7 @@ interface InvestigationContextType {
   selectEvidence: (id: string | null) => void;
   setTimelineIndex: (index: number) => void;
   toggleTimelinePlay: () => void;
-  setActiveView: (view: 'dashboard' | 'workspace' | 'network' | 'replay' | 'patterns' | 'evidence') => void;
+  setActiveView: (view: 'dashboard' | 'workspace' | 'network' | 'replay' | 'patterns' | 'evidence' | 'assistant') => void;
   setGraphFilter: (filter: 'ALL' | 'CORE_NEXUS' | 'FINANCIAL' | 'PERSON' | 'ACCOUNT') => void;
   toggleFocusMode: () => void;
   toggleTheme: () => void;
@@ -100,7 +100,7 @@ export const InvestigationProvider: React.FC<{ children: React.ReactNode }> = ({
   const [timelineIndex, setTimelineIndex] = useState<number>(0);
   const [isPlayingTimeline, setIsPlayingTimeline] = useState<boolean>(false);
   
-  const [activeView, setActiveView] = useState<'dashboard' | 'workspace' | 'network' | 'replay' | 'patterns' | 'evidence'>('workspace');
+  const [activeView, setActiveView] = useState<'dashboard' | 'workspace' | 'network' | 'replay' | 'patterns' | 'evidence' | 'assistant'>('workspace');
   const [graphFilter, setGraphFilter] = useState<'ALL' | 'CORE_NEXUS' | 'FINANCIAL' | 'PERSON' | 'ACCOUNT'>('CORE_NEXUS');
   const [focusMode, setFocusMode] = useState<boolean>(false);
   const [theme, setThemeState] = useState<'light' | 'dark'>(() => {
