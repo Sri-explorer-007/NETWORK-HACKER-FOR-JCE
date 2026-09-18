@@ -10,7 +10,6 @@ import {
   Network,
   History,
   ShieldCheck,
-  Cpu,
   Sun,
   Moon,
 } from 'lucide-react';
@@ -36,21 +35,8 @@ export const TopBar: React.FC = () => {
 
   return (
     <header className="h-14 bg-white dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800/80 backdrop-blur-xl px-4 flex items-center justify-between z-30 select-none transition-colors shadow-sm">
-      {/* Left: Branding & Case Selector */}
+      {/* Left: Case Selector & Status */}
       <div className="flex items-center space-x-3">
-        <div className="flex items-center space-x-2 border-r border-slate-200 dark:border-slate-800 pr-3">
-          <div className="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shadow-sm">
-            <Cpu className="w-4 h-4" />
-          </div>
-          <div>
-            <div className="text-[11px] font-mono font-bold text-slate-900 dark:text-white tracking-wider">
-              NETWORK HUNTER
-            </div>
-            <div className="text-[9px] font-mono text-cyan-600 dark:text-cyan-400 tracking-tight font-semibold">
-              PS09 INTELLIGENCE
-            </div>
-          </div>
-        </div>
 
         {/* Case Dropdown */}
         <div className="relative flex items-center">
