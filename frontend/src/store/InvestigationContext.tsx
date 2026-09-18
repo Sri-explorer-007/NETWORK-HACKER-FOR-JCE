@@ -24,6 +24,7 @@ interface InvestigationContextType {
   activeView: 'dashboard' | 'workspace' | 'network' | 'replay' | 'patterns' | 'evidence';
   graphFilter: 'ALL' | 'CORE_NEXUS' | 'FINANCIAL' | 'PERSON' | 'ACCOUNT';
   focusMode: boolean;
+  theme: 'light' | 'dark';
   aiQuery: string;
   aiResponse: InvestigationQueryResponse | null;
   aiLoading: boolean;
@@ -43,6 +44,8 @@ interface InvestigationContextType {
   setActiveView: (view: 'dashboard' | 'workspace' | 'network' | 'replay' | 'patterns' | 'evidence') => void;
   setGraphFilter: (filter: 'ALL' | 'CORE_NEXUS' | 'FINANCIAL' | 'PERSON' | 'ACCOUNT') => void;
   toggleFocusMode: () => void;
+  toggleTheme: () => void;
+  setTheme: (theme: 'light' | 'dark') => void;
   resetInvestigationView: () => void;
   runAiQuery: (query: string) => Promise<void>;
   setReportModalOpen: (open: boolean) => void;
@@ -100,6 +103,29 @@ export const InvestigationProvider: React.FC<{ children: React.ReactNode }> = ({
   const [activeView, setActiveView] = useState<'dashboard' | 'workspace' | 'network' | 'replay' | 'patterns' | 'evidence'>('workspace');
   const [graphFilter, setGraphFilter] = useState<'ALL' | 'CORE_NEXUS' | 'FINANCIAL' | 'PERSON' | 'ACCOUNT'>('CORE_NEXUS');
   const [focusMode, setFocusMode] = useState<boolean>(false);
+  const [theme, setThemeState] = useState<'light' | 'dark'>(() => {
+    const saved = localStorage.getItem('network_hunter_theme');
+    if (saved === 'dark' || saved === 'light') return saved;
+    return 'light'; // Default to clean bright/light theme as requested
+  });
+
+  // Sync theme to <html> element
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('network_hunter_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = useCallback(() => {
+    setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  }, []);
+
+  const setTheme = useCallback((newTheme: 'light' | 'dark') => {
+    setThemeState(newTheme);
+  }, []);
   
   const [aiQuery, setAiQuery] = useState<string>('');
   const [aiResponse, setAiResponse] = useState<InvestigationQueryResponse | null>(null);
@@ -279,6 +305,7 @@ export const InvestigationProvider: React.FC<{ children: React.ReactNode }> = ({
         activeView,
         graphFilter,
         focusMode,
+        theme,
         aiQuery,
         aiResponse,
         aiLoading,
@@ -297,6 +324,8 @@ export const InvestigationProvider: React.FC<{ children: React.ReactNode }> = ({
         setActiveView,
         setGraphFilter,
         toggleFocusMode,
+        toggleTheme,
+        setTheme,
         resetInvestigationView,
         runAiQuery,
         setReportModalOpen,

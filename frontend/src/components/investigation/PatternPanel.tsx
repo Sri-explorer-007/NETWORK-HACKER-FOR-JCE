@@ -76,68 +76,70 @@ export const PatternPanel: React.FC = () => {
   ];
 
   return (
-    <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-4 sm:p-5 backdrop-blur-md space-y-4 select-none">
-      <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
-        <div className="flex items-center space-x-2">
-          <Sparkles className="w-4 h-4 text-cyan-400" />
+    <div className="bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-4 sm:p-6 backdrop-blur-md space-y-4 select-none transition-colors shadow-sm">
+      <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3.5">
+        <div className="flex items-center space-x-2.5">
+          <div className="w-8 h-8 rounded-lg bg-cyan-50 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400">
+            <Sparkles className="w-4 h-4" />
+          </div>
           <div>
-            <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider font-mono">
+            <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider font-mono">
               POTENTIAL INVESTIGATION PATTERNS
             </h3>
-            <p className="text-[11px] text-slate-400 font-sans">
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-sans">
               Rule-based structural and temporal graph pattern detections.
             </p>
           </div>
         </div>
 
-        <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-slate-400">
+        <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-semibold shadow-sm">
           Advisory Pattern Intelligence
         </span>
       </div>
 
       {/* Pattern Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {patterns.map((pat) => {
           const Icon = pat.icon;
           return (
             <div
               key={pat.id}
-              className="bg-slate-950/90 border border-slate-800/90 rounded-xl p-3.5 flex flex-col justify-between space-y-3 hover:border-cyan-500/40 transition-all group"
+              className="bg-slate-50/70 hover:bg-white dark:bg-slate-950/90 dark:hover:bg-slate-900 border border-slate-200 hover:border-cyan-300 dark:border-slate-800/90 dark:hover:border-cyan-500/40 rounded-2xl p-4 flex flex-col justify-between space-y-3.5 transition-all shadow-sm group"
             >
               <div>
-                <div className="flex items-start justify-between mb-1.5 gap-2">
-                  <div className="flex items-start space-x-2">
-                    <div className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-cyan-400 mt-0.5">
-                      <Icon className="w-3.5 h-3.5" />
+                <div className="flex items-start justify-between mb-2 gap-2">
+                  <div className="flex items-start space-x-2.5">
+                    <div className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-cyan-600 dark:text-cyan-400 shadow-sm mt-0.5">
+                      <Icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors font-mono">
+                      <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-700 dark:group-hover:text-cyan-300 transition-colors font-mono">
                         {pat.title}
                       </h4>
-                      <div className="text-[10px] text-cyan-400 font-mono">
+                      <div className="text-[11px] text-cyan-700 dark:text-cyan-400 font-mono font-semibold mt-0.5">
                         {pat.subtitle}
                       </div>
                     </div>
                   </div>
 
-                  <span className="text-[9px] px-2 py-0.5 rounded font-mono bg-amber-950/80 border border-amber-500/40 text-amber-300 font-bold whitespace-nowrap">
+                  <span className="text-[10px] px-2.5 py-0.5 rounded-full font-mono bg-amber-100 dark:bg-amber-950/80 border border-amber-300 dark:border-amber-500/40 text-amber-800 dark:text-amber-300 font-bold whitespace-nowrap shadow-sm">
                     Requires review
                   </span>
                 </div>
 
-                <p className="text-[11px] text-slate-300 leading-relaxed font-sans pt-1">
+                <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-sans pt-1">
                   {pat.description}
                 </p>
               </div>
 
-              <div className="pt-2 border-t border-slate-850 flex items-center justify-between text-xs">
-                <div className="flex items-center space-x-1 text-[9px] font-mono text-slate-400">
-                  <span>Entities:</span>
+              <div className="pt-2.5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+                <div className="flex items-center space-x-1.5 text-[10px] font-mono text-slate-500 dark:text-slate-400">
+                  <span className="font-semibold">Entities:</span>
                   {pat.entities.map((eid) => (
                     <button
                       key={eid}
                       onClick={() => selectEntity(eid)}
-                      className="px-1.5 py-0.2 rounded bg-slate-900 border border-slate-800 text-cyan-300 hover:border-cyan-500 transition-colors"
+                      className="px-2 py-0.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-cyan-700 dark:text-cyan-300 hover:border-cyan-300 dark:hover:border-cyan-500 transition-colors shadow-sm font-bold"
                     >
                       {eid}
                     </button>
@@ -146,10 +148,10 @@ export const PatternPanel: React.FC = () => {
 
                 <button
                   onClick={pat.onAction}
-                  className="flex items-center space-x-1 text-[10px] font-semibold text-cyan-400 hover:text-cyan-300 transition-colors font-mono"
+                  className="flex items-center space-x-1 text-xs font-bold text-cyan-700 hover:text-cyan-900 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors font-mono"
                 >
                   <span>{pat.actionLabel}</span>
-                  <ArrowRight className="w-3 h-3" />
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
